@@ -42,10 +42,11 @@ public class MatrizLoca {
 
     public static void printMatriz(int matriz[][]) {
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                System.out.print(matriz[i][j] + " ");	// Imprime elemento 
+            System.out.print(matriz[i][0]);
+            for (int j = 1; j < matriz[i].length; j++) {
+                System.out.print(" "+matriz[i][j]);	// Imprime elemento 
             }
-            System.out.println();	// Imprime salto de línea 
+            System.out.println();	// Imprime salto de linea 
         }
     }
 }
