@@ -13,8 +13,8 @@ import java.util.*;
  */
 public class Fracciones {
 
-    static int numerator;
-    static int denominator;
+    static long numerator;
+    static long denominator;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -22,53 +22,70 @@ public class Fracciones {
             String numbers = sc.nextLine();
             String[] separador = numbers.split(" ");
 
-            int a = Integer.parseInt(separador[0]);
-            int b = Integer.parseInt(separador[1]);
+            long a = Integer.parseInt(separador[0]);
+            long b = Integer.parseInt(separador[1]);
             char signo = separador[2].charAt(0);
-            int c = Integer.parseInt(separador[3]);
-            int d = Integer.parseInt(separador[4]);
+            long c = Integer.parseInt(separador[3]);
+            long d = Integer.parseInt(separador[4]);
 
             switch (signo) {
-            case '+' -> suma(a, b, c, d);
-            case '-' -> resta(a, b, c, d);
-            case '*' -> multiplicacion(a, b, c, d);
-            case '/' -> division(a, b, c, d);
-            default -> {}
+                case '+':
+                    suma(a, b, c, d);
+                    break;
+                case '-':
+                    resta(a, b, c, d);
+                    break;
+                case '*':
+                    multiplicacion(a, b, c, d);
+                    break;
+                case '/':
+                    division(a, b, c, d);
+                    break;
+                default:
+                    break;
             }
             System.out.println(numerator + " " + denominator);
         }
     }
 
-    private static void suma(int a, int b, int c, int d) { // a/b + c/d      =    (a*d +- b*c) / b*d
+    private static void suma(long a, long b, long c, long d) { // a/b + c/d      =    (a*d +- b*c) / b*d
         simplify((a * d) + (b * c), b * d);
     }
 
-    private static void resta(int a, int b, int c, int d) {
+    private static void resta(long a, long b, long c, long d) {
         simplify((a * d) - (b * c), b * d);
     }
 
-    private static void multiplicacion(int a, int b, int c, int d) {
+    private static void multiplicacion(long a, long b, long c, long d) {
         simplify(a * c, b * d);
     }
 
-    private static void division(int a, int b, int c, int d) {
+    private static void division(long a, long b, long c, long d) {
         simplify(a * d, b * c);
     }
 
-    private static void simplify(int numerador, int denominador) { // Simplificar fracciones
-        int mcd = mcd(numerador, denominador);
-        numerator = numerador / mcd;
-        denominator = denominador / mcd;
+    private static void simplify(long numerador, long denominador) { // Simplificar fracciones
+        long gcd = gcd(numerador, denominador);
+        numerator = numerador / gcd;
+        denominator = denominador / gcd;
     }
 
-    private static int mcd(int a, int b) { // Maximo como un divisor, con restas
-        while (a != b) {
-            if (a > b) {
-                a -= b;
-            } else {
-                b -= a;
+    private static long gcd(long a, long b) {
+        if (a == 0) {
+            return b;
+        }
+        return gcd(b % a, a);
+    }
+
+    private static long mcd(long a, long b) {
+        while (true) {
+            long aux = a;
+            a = b % a;
+            b = aux;
+            if (a == 0) {
+                break;
             }
         }
-        return a;
+        return b;
     }
 }

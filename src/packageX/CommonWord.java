@@ -13,49 +13,80 @@ import java.util.*;
  */
 public class CommonWord {
 
+    static final Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
+        int t = sc.nextInt();
 
-        Scanner sc = new Scanner(System.in);
+        while (t > 0) {
+            solve();
+            t--;
+        }
 
-        byte cases = sc.nextByte();
-        byte aux = cases;
-        String[] ans = new String[cases];
-        while (aux + 1 > 0) {
-            String word = sc.nextLine();
-            String[] separador = word.split(" ");
-            for (int i = 0; i < cases; i++) {
-                ans[i] = biggestWord(separador);
-            }
+    }
+
+    private static void solve() {
+        HashMap<String, Integer> count;
+
+        int n = sc.nextByte();
+
+        int aux = n;
+
+        int highest = 0;
+        /*while (aux > 0) {
+            String word = sc.next();
+            count[word]++;
+            highest = max(count[word], highest);
             aux--;
         }
-        for (int i = 0; i < ans.length; i++) {
-            System.out.println(ans[i]);
-        }
+        String answer = "";
 
-    }
-
-    private static String biggestWord(String[] txt) {
-        int sizeWord = 0, count = 0, contador = 0;
-        String[] parrafo = new String[txt.length - 1]; // Integer.parseInt(txt[0])
-        for (int i = 1; i < txt.length; i++) {
-            count = countLetters(txt[i]);
-            if (sizeWord < count) {
-                sizeWord = count;
-                contador = i;
+        for (auto x : count) {
+            if (x.second == highest) {
+                if (answer == "") {
+                    answer = x.first;
+                } else if (answer > x.first) {
+                    answer = x.first;
+                }
             }
-            /*if(sizeWord == count){
-                
-            }*/
+        }
+        System.out.println(answer);
+        //cout << answer << endl;*/
+    }
+    /*
+    void solve() {
+        int n;cin >> n;
+
+        unordered_map<string, int> count;
+
+        int highest = 0;
+        while (n--) {
+            string word;cin >> word;
+            count[word]++;
+            highest = max(count[word], highest);
         }
 
-        return txt[contador];
+        string answer = "";
+
+        for (auto x : count) {
+            if (x.second == highest) {
+                if (answer == "") {
+                    answer = x.first;
+                } else if (answer > x.first) {
+                    answer = x.first;
+                }
+            }
+        }
+        cout << answer << endl;
     }
 
-    private static int countLetters(String letter) {
-        char[] arr = letter.toCharArray();
-        return arr.length;
+    int main() {
+        int t;cin >> t;
+
+        while (t--) {
+            solve();
+        }
+
     }
-    private static void print (String word){
-        
-    }
+     */
 }

@@ -20,13 +20,14 @@ public class BusEstation { //Wrong Answer
         byte aux = cases;
         while (aux > 0) {
             byte cant = sc.nextByte();
-            byte registro;
+            byte registro, rPlaca;
             byte[] placas = new byte[cant / 2];
             byte temp = 0;
-            for (byte i = 0; i < cant * 2; i++) {
+            for (byte i = 0; i < cant; i++) {
                 registro = sc.nextByte();
-                if (registro > 2) {
-                    placas[temp] = registro;
+                rPlaca = sc.nextByte();
+                if (rPlaca > 0 && temp < placas.length) {
+                    placas[temp] = rPlaca;
                     temp++;
                 }
             }
@@ -37,5 +38,4 @@ public class BusEstation { //Wrong Answer
         }
 
     }
-
 }

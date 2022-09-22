@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author GAMER
  */
-public class MatrizLoca {
+public class Invert_II {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -24,18 +24,9 @@ public class MatrizLoca {
             for (int i = 0; i < matriz.length; i++) {
                 for (int j = 0; j < matriz[i].length; j++) {
                     matriz[i][j] = sc.nextInt();
-                    if ((i % 2) == 0) {
-                        matriz[i][j]++;
-                    }
-                    if ((j % 2) == 0) {
-                        matriz[i][j] += 2;
-                    }
-                    if (((i % 2) != 0) && ((j % 2) != 0)) {
-                        matriz[i][j] -= 3;
-                    }
                 }
             }
-            printMatriz(matriz);
+            printMatriz(invertMatriz(matriz, nRows, nCols));
             cases--;
         }
     }
@@ -44,9 +35,20 @@ public class MatrizLoca {
         for (int i = 0; i < matriz.length; i++) {
             System.out.print(matriz[i][0]);
             for (int j = 1; j < matriz[i].length; j++) {
-                System.out.print(" "+matriz[i][j]);	// Imprime elemento 
+                System.out.print(" " + matriz[i][j]);
             }
-            System.out.println();	// Imprime salto de linea 
+            System.out.println();
         }
     }
+
+    public static int[][] invertMatriz(int matriz[][], int row, int col) {
+        int matrizInvert[][] = new int[row][col];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                matrizInvert[i][j] = matriz[(matriz.length) - (i + 1)][(matriz[i].length) - (j + 1)];
+            }
+        }
+        return matrizInvert;
+    }
+
 }
