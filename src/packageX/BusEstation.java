@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author GAMER
  */
-public class BusEstation { //Wrong Answer
+public class BusEstation {
 
     public static void main(String[] args) {
 
